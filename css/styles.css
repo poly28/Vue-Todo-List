@@ -1,0 +1,9 @@
+ul {
+  list-style: none;
+}
+
+ul .finish {
+  color: gray;
+  text-decoration: line-through;
+}
+/*# sourceMappingURL=styles.css.map */
