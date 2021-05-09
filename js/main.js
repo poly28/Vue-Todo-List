@@ -17,19 +17,28 @@ new Vue({
 			this.todos.splice(index, 1);
 		},
 		allSelect: function () {
-			let todos = this.todos;
-			for (let i = 0; i < todos.length; i++) {
-				todos[i].isDone = true;
+			for (let i = 0; i < this.todos.length; i++) {
+				this.todos[i].isDone = true;
 			}
 		},
-		selectedClear: function () {
-			let todos = this.todos;
-			for (let i = 0; i < todos.length; i++) {
-				todos[i].isDone = false;
+		allClear: function () {
+			for (let i = 0; i < this.todos.length; i++) {
+				this.todos[i].isDone = false;
 			}
 		},
-		SelectedDelete: function () {
-			let todos = this.todos;
+		allDelete: function () {
+			if (confirm('All delete OK?')) {
+				this.todos = [];
+			}
+		},
+		selectedDelete: function () {
+			let noFinish = [];
+			for (let i = 0; i < this.todos.length; i++) {
+				if (!this.todos[i].isDone) {
+					noFinish.push(todos[i]);
+				}
+			}
+			this.todos = noFinish;
 		},
 	},
 });

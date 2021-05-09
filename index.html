@@ -17,13 +17,16 @@
 	<body>
 		<div id="app">
 			<h2>Todo List</h2>
+			<hr />
 			<form>
 				<input type="text" v-model="newTask" />
 				<button @click.prevent="addTask">Add</button>
 			</form>
 			<button @click="allSelect">All Select</button>
-			<button @click="selectedClear">Selected Clear</button>
-			<!-- <button @click="selectedDelete">Selected Delete</button> -->
+			<button @click="allClear">All Clear</button>
+			<button @click="allDelete">All Delete</button>
+			<button @click="selectedDelete">Selected Delete</button>
+			<hr />
 
 			<ul>
 				<li v-for="(todo,index) in todos" :class="{finish:todo.isDone}">
