@@ -1,5 +1,10 @@
 ul {
 	list-style: none;
+	li {
+		&:nth-child(2n) {
+			background-color: skyblue;
+		}
+	}
 	.finish {
 		color: gray;
 		text-decoration: line-through;

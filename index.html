@@ -3,43 +3,76 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- bootstrap -->
-		<!-- <link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+		<!-- VueCtkDateTimePicker -->
+		<link
 			rel="stylesheet"
-			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-			crossorigin="anonymous"
-		/> -->
+			href="https://cdn.jsdelivr.net/npm/vue-ctk-date-time-picker@2.4.0/dist/vue-ctk-date-time-picker.css"
+		/>
+
 		<!-- stylesheet -->
 		<link rel="stylesheet" href="css\styles.css" />
 		<title>Todo List</title>
 	</head>
 	<body>
+		<!-- Vueアプリここから -->
 		<div id="app">
 			<h2>Todo List</h2>
 			<hr />
+
+			<!-- 入力フォームここから -->
 			<form>
-				<input type="text" v-model="newTask" />
+				<label for="Task">Task:</label>
+				<input id="Task" type="text" v-model="newTitle" /><br />
+				<label for="comment">Comment:</label>
+				<textarea
+					id="comment"
+					cols="30"
+					rows="2"
+					v-model="newComment"
+				></textarea>
+				<br />
+				<label for="Limit">Limit:</label>
+				<vue-ctk-date-time-picker
+					label="日時を選択"
+					formatted="YYYY/MM/DD hh:mm a"
+					v-model="newLimit"
+				></vue-ctk-date-time-picker>
 				<button @click.prevent="addTask">Add</button>
 			</form>
+			<!-- 入力フォームここまで -->
+
+			<!-- 各種機能ここから -->
+			<hr />
 			<button @click="allSelect">All Select</button>
 			<button @click="allClear">All Clear</button>
 			<button @click="allDelete">All Delete</button>
 			<button @click="selectedDelete">Selected Delete</button>
 			<hr />
+			<!-- 各種機能ここまで -->
 
+			<!-- Todoリストここから -->
 			<ul>
 				<li v-for="(todo,index) in todos" :class="{finish:todo.isDone}">
 					<input type="checkbox" v-model="todo.isDone" />
-					{{todo.title}}
+					ID: {{todo.id}} | {{todo.title}} | {{todo.comment}} | {{todo.limit}}
 					<button @click="rmTask(index)">×</button>
 				</li>
 			</ul>
+			<!-- Todoリストここまで -->
+
 			<!-- デバッグ用 -->
 			<!-- <pre>{{$data}}</pre> -->
+			<!-- デバッグ用 -->
 		</div>
+		<!-- Vueアプリここまで -->
+
 		<!-- 開発バージョン、便利なコンソールの警告が含まれています -->
 		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+		<!-- VueCtkDateTimePicker -->
+		<script src="https://cdn.jsdelivr.net/npm/vue-ctk-date-time-picker@2.4.0/dist/vue-ctk-date-time-picker.umd.min.js"></script>
+
+		<!-- メイン処理 -->
 		<script src="js\main.js"></script>
 	</body>
 </html>
