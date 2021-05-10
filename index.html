@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="css\styles.css" />
 		<title>Todo List</title>
 	</head>
+
 	<body>
 		<!-- Vueアプリここから -->
 		<div id="app">
@@ -48,10 +49,8 @@
 
 			<!-- 各種機能ここから -->
 			<hr />
-			<!-- <button @click="allSelect">All Select</button> -->
-			<!-- <button @click="allClear">All Clear</button> -->
+			<!-- 全削除機能 -->
 			<button @click="allDelete">All Delete</button>
-			<!-- <button @click="selectedDelete">Selected Delete</button> -->
 			<hr />
 			<!-- 各種機能ここまで -->
 
@@ -73,8 +72,17 @@
 						<td>{{todo.id}}</td>
 						<td>{{todo.task}}</td>
 						<td>{{todo.comment}}</td>
+						<!-- <td>{{todo.limit}}</td> -->
 						<td>{{todo.limit}}</td>
-						<td>{{todo.status}}</td>
+						<!-- <td>{{todo.status}}</td> -->
+						<td>
+							<select>
+								<option value=""></option>
+								<option value="Waiting">Waiting</option>
+								<option value="Doing">Doing</option>
+								<option value="Complite">Complite</option>
+							</select>
+						</td>
 						<td>
 							<button @click="rmTask(index)">×</button>
 						</td>

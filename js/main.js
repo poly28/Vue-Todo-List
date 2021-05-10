@@ -1,6 +1,6 @@
-const VueCtkDateTimePicker = window['vue-ctk-date-time-picker'];
-Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
-
+//=======================
+// メイン処理
+//=======================
 // todo(必須機能)
 // ・ステータス(未着手、進行中、完了 など)
 
@@ -18,6 +18,9 @@ Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
 // ・ステータス変更でスタイル変更
 // ・要素追加（内容、作成日、更新日など）
 // ・TODOの編集機能
+
+const VueCtkDateTimePicker = window['vue-ctk-date-time-picker'];
+Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
 
 new Vue({
 	el: '#app',
@@ -39,7 +42,7 @@ new Vue({
 			// 入力フォームのバリデーション
 			// 期限として過去の日付を設定できないようにする
 
-			// 各タスクの定義
+			// タスク追加オブジェクト
 			let newTask = {
 				id: this.todos.length + 1,
 				task: this.newTask,
@@ -48,7 +51,6 @@ new Vue({
 				status: 'Waiting',
 				isDone: false,
 			};
-
 			this.todos.push(newTask);
 			this.newTask = '';
 			this.newComment = '-';
@@ -57,37 +59,41 @@ new Vue({
 		rmTask: function (index) {
 			this.todos.splice(index, 1);
 		},
-		allSelect: function () {
-			for (let i = 0; i < this.todos.length; i++) {
-				this.todos[i].isDone = true;
-			}
-		},
-		allClear: function () {
-			for (let i = 0; i < this.todos.length; i++) {
-				this.todos[i].isDone = false;
-			}
-		},
+
 		allDelete: function () {
 			if (confirm('All delete OK?')) {
 				this.todos = [];
 			}
 		},
-		selectedDelete: function () {
-			let noFinish = [];
-			for (let i = 0; i < this.todos.length; i++) {
-				if (!this.todos[i].isDone) {
-					noFinish.push(this.todos[i]);
-				}
-			}
-			console.log(noFinish);
-			this.todos = noFinish;
-		},
 	},
 	watch: {
-		todos: function () {
+		todo: function () {
 			for (let i = 0; i < this.todos.length; i++) {
 				this.todos[i].id = i + 1;
 			}
 		},
 	},
 });
+
+//=======================
+// 不採用機能
+//=======================
+// allSelect: function () {
+// 	for (let i = 0; i < this.todos.length; i++) {
+// 		this.todos[i].isDone = true;
+// 	}
+// },
+// allClear: function () {
+// 	for (let i = 0; i < this.todos.length; i++) {
+// 		this.todos[i].isDone = false;
+// 	}
+// },
+// selectedDelete: function () {
+// 	let noFinish = [];
+// 	for (let i = 0; i < this.todos.length; i++) {
+// 		if (!this.todos[i].isDone) {
+// 			noFinish.push(this.todos[i]);
+// 		}
+// 	}
+// 	this.todos = noFinish;
+// },
