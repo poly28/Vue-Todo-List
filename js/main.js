@@ -22,34 +22,36 @@ Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
 new Vue({
 	el: '#app',
 	data: {
-		newTitle: '',
-		newLimit: '',
-		newComment: '',
 		todos: [],
+		newTask: '',
+		newComment: '-',
+		newLimit: '',
 	},
 	methods: {
 		addTask: function () {
 			// 入力フォームのバリデーション
-			// タスク名、期限の未入力検知
-			if (this.newTitle === '' || this.newLimit === '') {
-				alert('タスク名または期限が入力されていません。');
+			// タスク名の未入力検知
+			if (this.newTask === '') {
+				alert('タスク名が入力されていません。');
 				return;
 			}
 			// todo
 			// 入力フォームのバリデーション
 			// 期限として過去の日付を設定できないようにする
 
+			// 各タスクの定義
 			let newTask = {
 				id: this.todos.length + 1,
-				title: this.newTitle,
-				limit: this.newLimit,
+				task: this.newTask,
 				comment: this.newComment,
+				limit: this.newLimit,
+				status: 'Waiting',
 				isDone: false,
 			};
 
 			this.todos.push(newTask);
-			this.newTitle = '';
-			this.newComment = '';
+			this.newTask = '';
+			this.newComment = '-';
 			this.newLimit = '';
 		},
 		rmTask: function (index) {

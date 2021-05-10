@@ -1,13 +1,9 @@
-ul {
-  list-style: none;
+table {
+  border-collapse: collapse;
 }
 
-ul li:nth-child(2n) {
-  background-color: skyblue;
-}
-
-ul .finish {
-  color: gray;
-  text-decoration: line-through;
+table th,
+table td {
+  border: 1px solid black;
 }
 /*# sourceMappingURL=styles.css.map */

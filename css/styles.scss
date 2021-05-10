@@ -1,12 +1,21 @@
-ul {
-	list-style: none;
-	li {
-		&:nth-child(2n) {
-			background-color: skyblue;
-		}
-	}
-	.finish {
-		color: gray;
-		text-decoration: line-through;
+table {
+	border-collapse: collapse;
+	th,
+	td {
+		border: 1px solid black;
 	}
 }
+
+// 旧表示
+// ul {
+// 	list-style: none;
+// 	li {
+// 		&:nth-child(2n) {
+// 			background-color: skyblue;
+// 		}
+// 	}
+// 	.finish {
+// 		color: gray;
+// 		text-decoration: line-through;
+// 	}
+// }

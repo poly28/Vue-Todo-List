@@ -22,7 +22,12 @@
 			<!-- 入力フォームここから -->
 			<form>
 				<label for="Task">Task:</label>
-				<input id="Task" type="text" v-model="newTitle" /><br />
+				<input
+					id="Task"
+					type="text"
+					v-model="newTask"
+					value="put on your task!"
+				/><br />
 				<label for="comment">Comment:</label>
 				<textarea
 					id="comment"
@@ -43,21 +48,51 @@
 
 			<!-- 各種機能ここから -->
 			<hr />
-			<button @click="allSelect">All Select</button>
-			<button @click="allClear">All Clear</button>
+			<!-- <button @click="allSelect">All Select</button> -->
+			<!-- <button @click="allClear">All Clear</button> -->
 			<button @click="allDelete">All Delete</button>
-			<button @click="selectedDelete">Selected Delete</button>
+			<!-- <button @click="selectedDelete">Selected Delete</button> -->
 			<hr />
 			<!-- 各種機能ここまで -->
 
 			<!-- Todoリストここから -->
-			<ul>
-				<li v-for="(todo,index) in todos" :class="{finish:todo.isDone}">
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Task</th>
+						<th>Detail</th>
+						<th>Limit</th>
+						<th>Status</th>
+						<th>Delete</th>
+						<th>Edit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(todo,index) in todos" :class="{finish:todo.isDone}">
+						<td>{{todo.id}}</td>
+						<td>{{todo.task}}</td>
+						<td>{{todo.comment}}</td>
+						<td>{{todo.limit}}</td>
+						<td>{{todo.status}}</td>
+						<td>
+							<button @click="rmTask(index)">×</button>
+						</td>
+						<td>
+							<button>Edit</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 旧表示 -->
+			<!-- <ul>
+				<l v-for="(todo,index) in todos" :class="{finish:todo.isDone}">
 					<input type="checkbox" v-model="todo.isDone" />
-					ID: {{todo.id}} | {{todo.title}} | {{todo.comment}} | {{todo.limit}}
+					ID: {{todo.id}} | {{todo.task}} | {{todo.comment}} | {{todo.limit}}
 					<button @click="rmTask(index)">×</button>
-				</li>
-			</ul>
+				</l{{todo.>
+			}}</ul> -->
+			<!-- 旧表示 -->
 			<!-- Todoリストここまで -->
 
 			<!-- デバッグ用 -->
