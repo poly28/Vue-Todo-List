@@ -1,13 +1,25 @@
 /*================================
+    ▽ 共通設定
+================================*/
+* {
+	margin: 0;
+}
+body {
+	background-color: rgb(245, 245, 245);
+}
+/*================================
     ▽ カラー
 ================================*/
-$tabeleHeadBGC: rgb(102, 204, 255);
-$tableDataBGC: rgb(240, 240, 240);
+$mainColor: rgb(102, 204, 255);
+$headerBGC: $mainColor;
+$tabeleHeadBGC: $mainColor;
+$tableDataBGC: white;
 
 /*================================
     ▽ ボーダー
 ================================*/
-$tabeleBorder: 2px solid white;
+$taskBorder: 1px solid gray;
+$tabeleBorder: 3px solid rgb(245, 245, 245);
 
 /*================================
     ▽ 横幅
@@ -21,9 +33,50 @@ $statusWidth: 100px;
 $deleteWidth: 100px;
 $editWidth: 50px;
 
+/*================================
+    ▽ フォントサイズ
+================================*/
+$titleFS: 28px;
+$taskFS: 18px;
+/*================================
+    ▽ メインスタイル
+================================*/
+/*================================
+    ▽ ヘッダー
+================================*/
+header {
+	background-color: $headerBGC;
+	color: white;
+	height: 80px;
+	line-height: 80px;
+	padding: 0 40px;
+	letter-spacing: 10px;
+	font-size: $titleFS;
+}
+
+#Task {
+	border: none;
+	border-bottom: $taskBorder;
+	margin: 30px 0;
+	margin-left: 40px;
+	height: 28px;
+	width: 300px;
+	font-size: $taskFS;
+}
+#addCircle {
+	height: 28px;
+	cursor: pointer;
+	scale: calc(1.5);
+	line-height: 28px;
+	&:hover {
+		opacity: 0.6;
+	}
+}
+
 table {
 	text-align: center;
 	border-collapse: collapse;
+	margin-left: 30px;
 	thead {
 		tr {
 			background-color: $tabeleHeadBGC;

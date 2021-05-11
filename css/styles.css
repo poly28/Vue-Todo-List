@@ -1,5 +1,16 @@
 @charset "UTF-8";
 /*================================
+    ▽ 共通設定
+================================*/
+* {
+  margin: 0;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+/*================================
     ▽ カラー
 ================================*/
 /*================================
@@ -8,9 +19,50 @@
 /*================================
     ▽ 横幅
 ================================*/
+/*================================
+    ▽ フォントサイズ
+================================*/
+/*================================
+    ▽ メインスタイル
+================================*/
+/*================================
+    ▽ ヘッダー
+================================*/
+header {
+  background-color: #66ccff;
+  color: white;
+  height: 80px;
+  line-height: 80px;
+  padding: 0 40px;
+  letter-spacing: 10px;
+  font-size: 28px;
+}
+
+#Task {
+  border: none;
+  border-bottom: 1px solid gray;
+  margin: 30px 0;
+  margin-left: 40px;
+  height: 28px;
+  width: 300px;
+  font-size: 18px;
+}
+
+#addCircle {
+  height: 28px;
+  cursor: pointer;
+  scale: calc(1.5);
+  line-height: 28px;
+}
+
+#addCircle:hover {
+  opacity: 0.6;
+}
+
 table {
   text-align: center;
   border-collapse: collapse;
+  margin-left: 30px;
 }
 
 table thead tr {
@@ -19,7 +71,7 @@ table thead tr {
 }
 
 table thead tr th {
-  border: 2px solid white;
+  border: 3px solid whitesmoke;
 }
 
 table thead tr .th-id {
@@ -51,7 +103,7 @@ table thead tr .th-edit {
 }
 
 table tbody tr td {
-  background-color: #f0f0f0;
-  border: 2px solid white;
+  background-color: white;
+  border: 3px solid whitesmoke;
 }
 /*# sourceMappingURL=styles.css.map */

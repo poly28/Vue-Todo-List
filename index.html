@@ -13,18 +13,18 @@
 		<link rel="stylesheet" href="css\styles.css" />
 		<title>Todo List</title>
 	</head>
-
 	<body>
 		<!-- Vueアプリここから -->
 		<div id="app">
-			<h2>Todo List</h2>
-			<hr />
+			<header>
+				<h2>Todo List</h2>
+			</header>
 
 			<!-- 入力フォームここから -->
 			<form>
-				<label for="Task">Task:</label>
-				<input id="Task" type="text" v-model="newTask" /><br />
-				<label for="Detail">Detail:</label>
+				<!-- <label for="Task">Task:</label> -->
+				<input id="Task" type="text" v-model="newTask" />
+				<!-- <label for="Detail">Detail:</label>
 				<textarea
 					id="Detail"
 					cols="30"
@@ -37,18 +37,18 @@
 					label="日時を選択"
 					formatted="YYYY/MM/DD hh:mm a"
 					v-model="newLimit"
-				></vue-ctk-date-time-picker>
+				></vue-ctk-date-time-picker> -->
+
 				<button @click.prevent="addTask">Add</button>
 			</form>
 			<!-- 入力フォームここまで -->
 
 			<!-- 各種機能ここから -->
-			<hr />
-			<!-- 全削除機能 -->
-			<button @click="allDelete">All Delete</button>
-			<hr />
+			<section>
+				<!-- 全削除機能 -->
+				<button @click="allDelete">All Delete</button>
+			</section>
 			<!-- 各種機能ここまで -->
-
 			<!-- Todoリストここから -->
 			<table>
 				<thead>
