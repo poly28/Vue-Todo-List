@@ -1,21 +1,67 @@
+/*================================
+    ▽ カラー
+================================*/
+$tabeleHeadBGC: rgb(102, 204, 255);
+$tableDataBGC: rgb(240, 240, 240);
+
+/*================================
+    ▽ ボーダー
+================================*/
+$tabeleBorder: 2px solid white;
+
+/*================================
+    ▽ 横幅
+================================*/
+// テーブルのヘッダー横幅
+$idWidth: 50px;
+$taskWidth: 150px;
+$detailWidth: 200px;
+$limitWidth: 200px;
+$statusWidth: 100px;
+$deleteWidth: 100px;
+$editWidth: 50px;
+
 table {
+	text-align: center;
 	border-collapse: collapse;
-	th,
-	td {
-		border: 1px solid black;
+	thead {
+		tr {
+			background-color: $tabeleHeadBGC;
+			color: white;
+			th {
+				border: $tabeleBorder;
+			}
+
+			// width: 80vw;
+			.th-id {
+				width: $idWidth;
+			}
+			.th-task {
+				width: $taskWidth;
+			}
+			.th-detail {
+				width: $detailWidth;
+			}
+			.th-limit {
+				width: $limitWidth;
+			}
+			.th-status {
+				width: $statusWidth;
+			}
+			.th-delete {
+				width: $deleteWidth;
+			}
+			.th-edit {
+				width: $editWidth;
+			}
+		}
+	}
+	tbody {
+		tr {
+			td {
+				background-color: $tableDataBGC;
+				border: $tabeleBorder;
+			}
+		}
 	}
 }
-
-// 旧表示
-// ul {
-// 	list-style: none;
-// 	li {
-// 		&:nth-child(2n) {
-// 			background-color: skyblue;
-// 		}
-// 	}
-// 	.finish {
-// 		color: gray;
-// 		text-decoration: line-through;
-// 	}
-// }

@@ -23,15 +23,10 @@
 			<!-- 入力フォームここから -->
 			<form>
 				<label for="Task">Task:</label>
-				<input
-					id="Task"
-					type="text"
-					v-model="newTask"
-					value="put on your task!"
-				/><br />
-				<label for="comment">Comment:</label>
+				<input id="Task" type="text" v-model="newTask" /><br />
+				<label for="Detail">Detail:</label>
 				<textarea
-					id="comment"
+					id="Detail"
 					cols="30"
 					rows="2"
 					v-model="newComment"
@@ -58,13 +53,13 @@
 			<table>
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Task</th>
-						<th>Detail</th>
-						<th>Limit</th>
-						<th>Status</th>
-						<th>Delete</th>
-						<th>Edit</th>
+						<th class="th-id">ID</th>
+						<th class="th-task">Task</th>
+						<th class="th-detail">Detail</th>
+						<th class="th-limit">Limit</th>
+						<th class="th-status">Status</th>
+						<th class="th-delete">Delete</th>
+						<th class="th-edit">Edit</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -1,9 +1,57 @@
+@charset "UTF-8";
+/*================================
+    ▽ カラー
+================================*/
+/*================================
+    ▽ ボーダー
+================================*/
+/*================================
+    ▽ 横幅
+================================*/
 table {
+  text-align: center;
   border-collapse: collapse;
 }
 
-table th,
-table td {
-  border: 1px solid black;
+table thead tr {
+  background-color: #66ccff;
+  color: white;
+}
+
+table thead tr th {
+  border: 2px solid white;
+}
+
+table thead tr .th-id {
+  width: 50px;
+}
+
+table thead tr .th-task {
+  width: 150px;
+}
+
+table thead tr .th-detail {
+  width: 200px;
+}
+
+table thead tr .th-limit {
+  width: 200px;
+}
+
+table thead tr .th-status {
+  width: 100px;
+}
+
+table thead tr .th-delete {
+  width: 100px;
+}
+
+table thead tr .th-edit {
+  width: 50px;
+}
+
+table tbody tr td {
+  background-color: #f0f0f0;
+  border: 2px solid white;
 }
 /*# sourceMappingURL=styles.css.map */

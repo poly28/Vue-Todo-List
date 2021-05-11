@@ -38,6 +38,7 @@ new Vue({
 				alert('タスク名が入力されていません。');
 				return;
 			}
+
 			// todo
 			// 入力フォームのバリデーション
 			// 期限として過去の日付を設定できないようにする
@@ -67,7 +68,7 @@ new Vue({
 		},
 	},
 	watch: {
-		todo: function () {
+		todos: function () {
 			for (let i = 0; i < this.todos.length; i++) {
 				this.todos[i].id = i + 1;
 			}
