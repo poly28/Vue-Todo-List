@@ -23,7 +23,12 @@
 			<!-- 入力フォームここから -->
 			<form>
 				<!-- <label for="Task">Task:</label> -->
-				<input id="Task" type="text" v-model="newTask" />
+				<input
+					id="Task"
+					type="text"
+					placeholder=" Put on your task!"
+					v-model="newTask"
+				/>
 				<!-- <label for="Detail">Detail:</label>
 				<textarea
 					id="Detail"
@@ -43,12 +48,6 @@
 			</form>
 			<!-- 入力フォームここまで -->
 
-			<!-- 各種機能ここから -->
-			<section>
-				<!-- 全削除機能 -->
-				<button @click="allDelete">All Delete</button>
-			</section>
-			<!-- 各種機能ここまで -->
 			<!-- Todoリストここから -->
 			<table>
 				<thead>
@@ -65,14 +64,17 @@
 				<tbody>
 					<tr v-for="(todo,index) in todos" :class="{finish:todo.isDone}">
 						<td>{{todo.id}}</td>
-						<td>{{todo.task}}</td>
-						<td>{{todo.comment}}</td>
-						<!-- <td>{{todo.limit}}</td> -->
+						<td>
+							<input v-if="isEdit" v-model="todo.task" />
+							<p v-else>{{todo.task}}</p>
+						</td>
+						<td>
+							<input v-if="isEdit" v-model="todo.comment" />
+							<p v-else>{{todo.comment}}</p>
+						</td>
 						<td>{{todo.limit}}</td>
-						<!-- <td>{{todo.status}}</td> -->
 						<td>
 							<select>
-								<option value=""></option>
 								<option value="Waiting">Waiting</option>
 								<option value="Doing">Doing</option>
 								<option value="Complite">Complite</option>
@@ -82,11 +84,20 @@
 							<button @click="rmTask(index)">×</button>
 						</td>
 						<td>
-							<button>Edit</button>
+							<button v-if="!isEdit" @click="isEdit = !isEdit">Edit</button>
+							<button v-else @click="isEdit = !isEdit">OK</button>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+
+			<!-- 各種機能ここから -->
+			<section>
+				<!-- 全削除機能 -->
+				<button @click="allDelete">All Delete</button>
+			</section>
+			<!-- 各種機能ここまで -->
+
 			<!-- 旧表示 -->
 			<!-- <ul>
 				<l v-for="(todo,index) in todos" :class="{finish:todo.isDone}">
@@ -99,7 +110,7 @@
 			<!-- Todoリストここまで -->
 
 			<!-- デバッグ用 -->
-			<!-- <pre>{{$data}}</pre> -->
+			<!-- <pre>{{$data.todos}}</pre> -->
 			<!-- デバッグ用 -->
 		</div>
 		<!-- Vueアプリここまで -->
