@@ -22,29 +22,12 @@
 
 			<!-- 入力フォームここから -->
 			<form>
-				<!-- <label for="Task">Task:</label> -->
 				<input
 					id="Task"
 					type="text"
 					placeholder=" Put on your task!"
 					v-model="newTask"
 				/>
-				<!-- <label for="Detail">Detail:</label>
-				<textarea
-					id="Detail"
-					cols="30"
-					rows="2"
-					v-model="newComment"
-				></textarea>
-				<br />
-				<label for="Limit">Limit:</label>
-
-				<vue-ctk-date-time-picker
-					label="日時を選択"
-					formatted="YYYY/MM/DD hh:mm a"
-					v-model="newLimit"
-				></vue-ctk-date-time-picker> -->
-
 				<button @click.prevent="addTask">Add</button>
 			</form>
 			<!-- 入力フォームここまで -->
@@ -63,7 +46,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="(todo,index) in todos" :class="{finish:todo.isDone}">
+					<tr v-for="(todo,index) in todos" :class="{complete:todo.isDone}">
 						<td>{{todo.id}}</td>
 						<td>
 							<input v-if="isEdit" v-model="todo.task" />
@@ -107,15 +90,6 @@
 			</section>
 			<!-- 各種機能ここまで -->
 
-			<!-- 旧表示 -->
-			<!-- <ul>
-				<l v-for="(todo,index) in todos" :class="{finish:todo.isDone}">
-					<input type="checkbox" v-model="todo.isDone" />
-					ID: {{todo.id}} | {{todo.task}} | {{todo.comment}} | {{todo.limit}}
-					<button @click="rmTask(index)">×</button>
-				</l{{todo.>
-			}}</ul> -->
-			<!-- 旧表示 -->
 			<!-- Todoリストここまで -->
 
 			<!-- デバッグ用 -->

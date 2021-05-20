@@ -56,12 +56,13 @@ header {
 
 #Task {
 	border: none;
-	border-bottom: $taskBorder;
+	// border-bottom: $taskBorder;
 	margin: 30px 0;
 	margin-left: 40px;
 	height: 28px;
 	width: 300px;
 	font-size: $taskFS;
+	border-radius: 5px;
 }
 #addCircle {
 	height: 28px;
@@ -84,8 +85,6 @@ table {
 			th {
 				border: $tabeleBorder;
 			}
-
-			// width: 80vw;
 			.th-id {
 				width: $idWidth;
 			}
@@ -115,6 +114,11 @@ table {
 				background-color: $tableDataBGC;
 				border: $tabeleBorder;
 			}
+		}
+		.complete {
+			background-color: gray;
+			color: gray;
+			text-decoration: line-through;
 		}
 	}
 }

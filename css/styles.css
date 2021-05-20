@@ -40,12 +40,12 @@ header {
 
 #Task {
   border: none;
-  border-bottom: 1px solid gray;
   margin: 30px 0;
   margin-left: 40px;
   height: 28px;
   width: 300px;
   font-size: 18px;
+  border-radius: 5px;
 }
 
 #addCircle {
@@ -105,5 +105,11 @@ table thead tr .th-edit {
 table tbody tr td {
   background-color: white;
   border: 3px solid whitesmoke;
+}
+
+table tbody .complete {
+  background-color: gray;
+  color: gray;
+  text-decoration: line-through;
 }
 /*# sourceMappingURL=styles.css.map */
