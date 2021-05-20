@@ -38,6 +38,7 @@
 				></textarea>
 				<br />
 				<label for="Limit">Limit:</label>
+
 				<vue-ctk-date-time-picker
 					label="日時を選択"
 					formatted="YYYY/MM/DD hh:mm a"
@@ -72,7 +73,15 @@
 							<input v-if="isEdit" v-model="todo.comment" />
 							<p v-else>{{todo.comment}}</p>
 						</td>
-						<td>{{todo.limit}}</td>
+						<td>
+							<vue-ctk-date-time-picker
+								v-if="isEdit"
+								label="日時を選択"
+								formatted="YYYY/MM/DD hh:mm a"
+								v-model="todo.limit"
+							></vue-ctk-date-time-picker>
+							<p v-else>{{todo.limit}}</p>
+						</td>
 						<td>
 							<select>
 								<option value="Waiting">Waiting</option>
@@ -110,7 +119,7 @@
 			<!-- Todoリストここまで -->
 
 			<!-- デバッグ用 -->
-			<!-- <pre>{{$data.todos}}</pre> -->
+			<pre>{{$data.todos}}</pre>
 			<!-- デバッグ用 -->
 		</div>
 		<!-- Vueアプリここまで -->
