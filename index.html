@@ -83,10 +83,10 @@
 							<p v-else>{{todo.limit}}</p>
 						</td>
 						<td>
-							<select>
-								<option value="Waiting">Waiting</option>
-								<option value="Doing">Doing</option>
-								<option value="Complite">Complite</option>
+							<select v-model="todo.isDone">
+								<option value="false">Waiting</option>
+								<option value="false">Doing</option>
+								<option value="true">Complete</option>
 							</select>
 						</td>
 						<td>
