@@ -25,11 +25,27 @@ Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
 new Vue({
 	el: '#app',
 	data: {
+		// タスクリストの格納配列
 		todos: [],
+
+		// タスク追加用データ
 		newTask: '',
 		newComment: '-',
 		newLimit: '',
 		isEdit: false,
+
+		// テーブルの見出しレンダリング用
+		tableSet: {
+			head: [
+				{ title: 'ID', class: 'th-id' },
+				{ title: 'Task', class: 'th-task' },
+				{ title: 'Detail', class: 'th-detail' },
+				{ title: 'Limit', class: 'th-limit' },
+				{ title: 'Status', class: 'th-status' },
+				{ title: 'Delete', class: 'th-delete' },
+				{ title: 'Edit', class: 'th-edit' },
+			],
+		},
 	},
 	methods: {
 		addTask: function () {

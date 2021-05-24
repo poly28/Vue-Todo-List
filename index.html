@@ -36,15 +36,13 @@
 			<table>
 				<thead>
 					<tr>
-						<th class="th-id">ID</th>
-						<th class="th-task">Task</th>
-						<th class="th-detail">Detail</th>
-						<th class="th-limit">Limit</th>
-						<th class="th-status">Status</th>
-						<th class="th-delete">Delete</th>
-						<th class="th-edit">Edit</th>
+						<!-- テーブルの見出しレンダリング -->
+						<th v-for="table in tableSet.head" :class="table.class">
+							{{table.title}}
+						</th>
 					</tr>
 				</thead>
+
 				<tbody>
 					<tr v-for="(todo,index) in todos" :class="{complete:todo.isDone}">
 						<td>{{todo.id}}</td>
@@ -52,10 +50,12 @@
 							<input v-if="isEdit" v-model="todo.task" />
 							<p v-else>{{todo.task}}</p>
 						</td>
+
 						<td>
 							<input v-if="isEdit" v-model="todo.comment" />
 							<p v-else>{{todo.comment}}</p>
 						</td>
+
 						<td>
 							<vue-ctk-date-time-picker
 								v-if="isEdit"
@@ -65,11 +65,12 @@
 							></vue-ctk-date-time-picker>
 							<p v-else>{{todo.limit}}</p>
 						</td>
+
 						<td>
 							<select v-model="todo.isDone">
-								<option value="false">Waiting</option>
-								<option value="false">Doing</option>
-								<option value="true">Complete</option>
+								<option value="`false`">Waiting</option>
+								<option value="`false`">Doing</option>
+								<option value="`true`">Complete</option>
 							</select>
 						</td>
 						<td>
