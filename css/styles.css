@@ -74,31 +74,31 @@ table thead tr th {
   border: 3px solid whitesmoke;
 }
 
-table thead tr .th-id {
+table thead tr .th-id, table thead tr .td-id {
   width: 50px;
 }
 
-table thead tr .th-task {
+table thead tr .th-task, table thead tr .td-task {
   width: 150px;
 }
 
-table thead tr .th-detail {
+table thead tr .th-detail, table thead tr .td-detail {
   width: 200px;
 }
 
-table thead tr .th-limit {
+table thead tr .th-limit, table thead tr .td-limit {
   width: 200px;
 }
 
-table thead tr .th-status {
+table thead tr .th-status, table thead tr .td-status {
   width: 100px;
 }
 
-table thead tr .th-delete {
+table thead tr .th-delete, table thead tr .td-delete {
   width: 100px;
 }
 
-table thead tr .th-edit {
+table thead tr .th-edit.td-edit {
   width: 50px;
 }
 

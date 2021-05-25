@@ -1,7 +1,7 @@
 /*================================
     ▽ 共通設定
 ================================*/
-* {
+*{
 	margin: 0;
 }
 body {
@@ -85,25 +85,25 @@ table {
 			th {
 				border: $tabeleBorder;
 			}
-			.th-id {
+			.th-id,.td-id {
 				width: $idWidth;
 			}
-			.th-task {
+			.th-task,.td-task {
 				width: $taskWidth;
 			}
-			.th-detail {
+			.th-detail,.td-detail {
 				width: $detailWidth;
 			}
-			.th-limit {
+			.th-limit,.td-limit {
 				width: $limitWidth;
 			}
-			.th-status {
+			.th-status,.td-status {
 				width: $statusWidth;
 			}
-			.th-delete {
+			.th-delete,.td-delete {
 				width: $deleteWidth;
 			}
-			.th-edit {
+			.th-edit.td-edit {
 				width: $editWidth;
 			}
 		}

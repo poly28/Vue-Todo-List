@@ -32,6 +32,19 @@
 			</form>
 			<!-- 入力フォームここまで -->
 
+			<!-- 追加機能 -->
+			<!-- ステータスによる絞り込み機能 -->
+			<hr />
+			<label for="statusFilter">【絞り込み】</label><br />
+			<input type="checkbox" value="Waiting" v-model="checkedStatus" />Waiting
+			<br />
+			<input type="checkbox" value="Doing" v-model="checkedStatus" />Doing
+			<br />
+			<input type="checkbox" value="Complete" v-model="checkedStatus" />Complete
+			<br />
+			<hr />
+			<!-- 追加機能ここまで -->
+
 			<!-- Todoリストここから -->
 			<table>
 				<thead>
@@ -46,17 +59,17 @@
 				<tbody>
 					<tr v-for="(todo,index) in todos" :class="{complete:todo.isDone}">
 						<td>{{todo.id}}</td>
-						<td>
+						<td class="td-task">
 							<input v-if="isEdit" v-model="todo.task" />
 							<p v-else>{{todo.task}}</p>
 						</td>
 
-						<td>
+						<td class="td-detail">
 							<input v-if="isEdit" v-model="todo.comment" />
 							<p v-else>{{todo.comment}}</p>
 						</td>
 
-						<td>
+						<td class="td-limit">
 							<vue-ctk-date-time-picker
 								v-if="isEdit"
 								label="日時を選択"
@@ -94,7 +107,8 @@
 			<!-- Todoリストここまで -->
 
 			<!-- デバッグ用 -->
-			<pre>{{$data.todos}}</pre>
+			<!-- <pre>{{$data.todos}}</pre> -->
+			<pre>{{$data.checkedStatus}}</pre>
 			<!-- デバッグ用 -->
 		</div>
 		<!-- Vueアプリここまで -->

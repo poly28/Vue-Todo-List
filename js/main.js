@@ -17,7 +17,9 @@
 // □ 完了状態にしたらタスクの一番下に移動する
 // □ ステータス変更でスタイル変更
 // □ 要素追加（内容、作成日、更新日など）
-// □ TODOの編集機能
+// ■ TODOの編集機能
+// □入力フォームのバリデーション
+// 　期限として過去の日付を設定できないようにする
 
 const VueCtkDateTimePicker = window['vue-ctk-date-time-picker'];
 Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
@@ -27,6 +29,9 @@ new Vue({
 	data: {
 		// タスクリストの格納配列
 		todos: [],
+
+		//ステータスによる絞り込み用配列
+		checkedStatus: [],
 
 		// タスク追加用データ
 		newTask: '',
@@ -55,10 +60,6 @@ new Vue({
 				alert('タスク名が入力されていません。');
 				return;
 			}
-
-			// todo
-			// 入力フォームのバリデーション
-			// 期限として過去の日付を設定できないようにする
 
 			// タスク追加オブジェクト
 			let newTask = {
