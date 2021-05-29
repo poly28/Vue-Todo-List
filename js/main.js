@@ -8,7 +8,10 @@
 // ■ TODOのタイトル・期限・ステータス変更
 
 // todo(カスタマイズ)
-//! □ ソート(ID、期限、ステータスで並べ替え)
+// □ ソート(ID、期限、ステータスで並べ替え)
+//  ■ IDソート
+//  □ 期限ソート
+//  ■ ステータスソート
 // ■ フィルター(ID、期限、ステータスで絞り込み)
 // ■ コメント機能？→タスクの詳細を記載可能にした
 // □ TODOリストを1箇所(どのパーツでもOK)コンポーネント化してみる
@@ -18,8 +21,8 @@
 // □ ステータス変更でスタイル変更
 // □ 要素追加（内容、作成日、更新日など）
 // ■ TODOの編集機能
-// □入力フォームのバリデーション
-// 　期限として過去の日付を設定できないようにする
+// □ 入力フォームのバリデーション
+//   □期限として過去の日付を設定できないようにする
 
 //=======================
 // メイン処理
@@ -109,56 +112,98 @@ new Vue({
 			// フィルタリング実施後のリスト
 			let newList = [];
 
-			//------------------------------
-			// Filter全解除
-			if (
-				!this.checkedStatus.Waiting &&
-				!this.checkedStatus.Doing &&
-				!this.checkedStatus.Complete
-			) {
-				// フィルタリング無しでタスクリストをリターン
-				return this.todos;
-			}
-			//------------------------------
-			// Filter全選択
-			if (
-				this.checkedStatus.Waiting &&
-				this.checkedStatus.Doing &&
-				this.checkedStatus.Complete
-			) {
-				// フィルタリング無しでタスクリストをリターン
-				return this.todos;
-			}
-			//------------------------------
-
 			// タスクリストフィルタリング処理
 			for (i = 0; i < this.todos.length; i++) {
-				let isShow = true;
+				let isShow = false;
 
 				// ステータス：Waiting
 				if (this.checkedStatus.Waiting) {
 					// ステータスがWaitingのタスクをnewListに登録
 					if (this.todos[i].status === 'Waiting') {
-						newList.push(this.todos[i]);
+						isShow = true;
 					}
 				}
+
 				// ステータス：Doing
 				if (this.checkedStatus.Doing) {
 					// ステータスがDoingのタスクをnewListに登録
 					if (this.todos[i].status === 'Doing') {
-						newList.push(this.todos[i]);
+						isShow = true;
 					}
 				}
+
 				// ステータス：Complete
 				if (this.checkedStatus.Complete) {
 					// ステータスがCompleteのタスクをnewListに登録
 					if (this.todos[i].status === 'Complete') {
-						newList.push(this.todos[i]);
+						isShow = true;
 					}
+				}
+
+				// Filter未選択
+				if (
+					!this.checkedStatus.Waiting &&
+					!this.checkedStatus.Doing &&
+					!this.checkedStatus.Complete
+				) {
+					isShow = true;
+				}
+				if (isShow) {
+					newList.push(this.todos[i]);
 				}
 			}
 
-			// フィルタリングしたリストを返却する
+			// ここにsort機能を記述
+			switch (this.sortOrder) {
+				case 0: // sort解除(初期値)
+					break;
+				case 1: // ID昇順
+					newList.sort(function compareFunc(a, b) {
+						return a.id - b.id;
+					});
+					break;
+				case 2: // ID降順
+					newList.sort(function compareFunc(a, b) {
+						return b.id - a.id;
+					});
+					break;
+
+				case 3: // 期限昇順
+					// todo 期限昇順の機能を記述
+					// newList.sort(function compareFunc(a, b) {
+					// 	return a.limit - b.limit;
+					// });
+					break;
+
+				case 4: // 期限降順
+					// todo 期限降順の機能を記述
+					// newList.sort(function compareFunc(a, b) {
+					// 	return b.limit - a.limit;
+					// });
+					break;
+
+				case 5: // ステータス昇順
+					newList.sort(function compareFunc(a, b) {
+						statusA = a.status.toUpperCase();
+						statusB = b.status.toUpperCase();
+						if (statusA < statusB) return 1;
+						if (statusA > statusB) return -1;
+						return 0;
+					});
+					break;
+
+				case 6: // ステータス降順
+					newList.sort(function compareFunc(a, b) {
+						statusA = a.status.toUpperCase();
+						statusB = b.status.toUpperCase();
+						if (statusA < statusB) return -1;
+						if (statusA > statusB) return 1;
+						return 0;
+					});
+					break;
+			}
+
+			// フィルタリングしたリストをリターン
 			return newList;
 		},
 	},

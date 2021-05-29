@@ -67,14 +67,14 @@
 				<!-- ソート機能ここから -->
 				<nav>
 					<h3>【Sort】</h3>
-					<select>
-						<option value="" ></option>
-						<option value="">ID昇順</option>
-						<option value="">ID降順</option>
-						<option value="">期限昇順</option>
-						<option value="">期限降順</option>
-						<option value="">ステータス昇順</option>
-						<option value="">ステータス降順</option>
+					<select v-model.number="sortOrder">
+						<option value="0"></option>
+						<option value="1">ID昇順</option>
+						<option value="2">ID降順</option>
+						<option value="3">期限昇順</option>
+						<option value="4">期限降順</option>
+						<option value="5">ステータス昇順</option>
+						<option value="6">ステータス降順</option>
 					</select>
 				</nav>
 				<!-- ソート機能ここまで -->
