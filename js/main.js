@@ -8,9 +8,9 @@
 // ■ TODOのタイトル・期限・ステータス変更
 
 // todo(カスタマイズ)
-// □ ソート(ID、期限、ステータスで並べ替え)
+// ■ ソート(ID、期限、ステータスで並べ替え)
 //  ■ IDソート
-//  □ 期限ソート
+//  ■ 期限ソート
 //  ■ ステータスソート
 // ■ フィルター(ID、期限、ステータスで絞り込み)
 // ■ コメント機能？→タスクの詳細を記載可能にした
@@ -106,7 +106,7 @@ new Vue({
 	},
 	computed: {
 		//----------------------------------
-		// タスクリストレンダリング用フィルター
+		// タスクリスト レンダリング用フィルター
 		//----------------------------------
 		filteredList() {
 			// フィルタリング実施後のリスト
@@ -169,25 +169,27 @@ new Vue({
 					break;
 
 				case 3: // 期限昇順
-					// todo 期限昇順の機能を記述
-					// newList.sort(function compareFunc(a, b) {
-					// 	return a.limit - b.limit;
-					// });
+					newList.sort(function compareFunc(a, b) {
+						if (a.limit > b.limit) return 1;
+						if (a.limit < b.limit) return -1;
+						return 0;
+					});
 					break;
 
 				case 4: // 期限降順
-					// todo 期限降順の機能を記述
-					// newList.sort(function compareFunc(a, b) {
-					// 	return b.limit - a.limit;
-					// });
+					newList.sort(function compareFunc(a, b) {
+						if (a.limit < b.limit) return 1;
+						if (a.limit > b.limit) return -1;
+						return 0;
+					});
 					break;
 
 				case 5: // ステータス昇順
 					newList.sort(function compareFunc(a, b) {
 						statusA = a.status.toUpperCase();
 						statusB = b.status.toUpperCase();
-						if (statusA < statusB) return 1;
-						if (statusA > statusB) return -1;
+						if (statusA > statusB) return 1;
+						if (statusA < statusB) return -1;
 						return 0;
 					});
 					break;
@@ -196,8 +198,8 @@ new Vue({
 					newList.sort(function compareFunc(a, b) {
 						statusA = a.status.toUpperCase();
 						statusB = b.status.toUpperCase();
-						if (statusA < statusB) return -1;
-						if (statusA > statusB) return 1;
+						if (statusA < statusB) return 1;
+						if (statusA > statusB) return -1;
 						return 0;
 					});
 					break;
@@ -206,6 +208,15 @@ new Vue({
 			// フィルタリングしたリストをリターン
 			return newList;
 		},
+		// todo: 現在日時を返して過去日付の入力を防ぐ
+		// limitStart() {
+		// min-date に明日の9時を指定
+		// const start = moment().add(1, 'days').hour(8);
+		// return start.format('YYYY/MM/DD HH:mm');
+		// const minDate = '2021/05/29 21:50';
+		// return minDate;
+		// return '2021/05/29 21:50';
+		// },
 	},
 	watch: {
 		// タスク削除時のIDの整合性を保つ

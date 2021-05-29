@@ -100,20 +100,25 @@
 						<td>{{todo.id}}</td>
 						<td class="td-task">
 							<input v-if="isEdit" v-model="todo.task" />
-							<p v-else>{{todo.task}}</p>
+							<template v-else>{{todo.task}}</template>
 						</td>
 
 						<td class="td-detail">
 							<input v-if="isEdit" v-model="todo.comment" />
-							<p v-else>{{todo.comment}}</p>
+							<template v-else>{{todo.comment}}</template>
 						</td>
+						<!-- todo：min-dateに現在時刻を設定 -->
+						<!-- min-data="limitStart" -->
 
 						<td class="td-limit">
 							<vue-ctk-date-time-picker
 								v-if="isEdit"
-								label="日時を選択"
-								formatted="YYYY/MM/DD hh:mm a"
+								label="Select Limit!"
+								formatted="YYYY/MM/DD HH:mm"
+								format="YYYY/MM/DD HH:mm"
 								v-model="todo.limit"
+								overlay="true"
+								minute-interval="30"
 							></vue-ctk-date-time-picker>
 							<p v-else>{{todo.limit}}</p>
 						</td>
@@ -147,7 +152,7 @@
 			<!-- Todoリストここまで -->
 
 			<!-- デバッグ用 -->
-			<!-- <pre>{{$data.todos}}</pre> -->
+			<pre>{{$data.todos}}</pre>
 			<!-- <pre>{{$data.checkedStatus}}</pre> -->
 			<!-- デバッグ用 -->
 		</div>
