@@ -32,18 +32,55 @@
 			</form>
 			<!-- 入力フォームここまで -->
 
-			<!-- 追加機能 -->
-			<!-- ステータスによる絞り込み機能 -->
 			<hr />
-			<label for="statusFilter">【絞り込み】</label><br />
-			<input type="checkbox" value="Waiting" v-model="checkedStatus" />Waiting
-			<br />
-			<input type="checkbox" value="Doing" v-model="checkedStatus" />Doing
-			<br />
-			<input type="checkbox" value="Complete" v-model="checkedStatus" />Complete
-			<br />
-			<hr />
+			<!-- 追加機能ここから -->
+			<section class="additional-function">
+				<!-- 絞り込み機能ここから -->
+				<nav>
+					<h3>【Filter】</h3>
+					<input
+						type="checkbox"
+						id="check-waiting"
+						v-model="checkedStatus.Waiting"
+					/>
+					<label for="check-waiting">Waiting</label>
+					<br />
+
+					<input
+						type="checkbox"
+						id="check-doing"
+						v-model="checkedStatus.Doing"
+					/>
+					<label for="check-doing">Doing</label>
+					<br />
+
+					<input
+						type="checkbox"
+						id="check-complete"
+						v-model="checkedStatus.Complete"
+					/>
+					<label for="check-complete">Complete</label>
+					<br />
+				</nav>
+				<!-- 絞り込み機能ここまで -->
+
+				<!-- ソート機能ここから -->
+				<nav>
+					<h3>【Sort】</h3>
+					<select>
+						<option value=""></option>
+						<option value="">ID昇順</option>
+						<option value="">ID降順</option>
+						<option value="">期限昇順</option>
+						<option value="">期限降順</option>
+						<option value="">ステータス昇順</option>
+						<option value="">ステータス降順</option>
+					</select>
+				</nav>
+				<!-- ソート機能ここまで -->
+			</section>
 			<!-- 追加機能ここまで -->
+			<hr />
 
 			<!-- Todoリストここから -->
 			<table>
@@ -53,11 +90,13 @@
 						<th v-for="table in tableSet.head" :class="table.class">
 							{{table.title}}
 						</th>
+						<!-- テーブルの見出しレンダリング -->
 					</tr>
 				</thead>
 
+				<!-- タスクリストのレンダリング -->
 				<tbody>
-					<tr v-for="(todo,index) in todos" :class="{complete:todo.isDone}">
+					<tr v-for="(todo,index) in filteredList" :key="todo.id">
 						<td>{{todo.id}}</td>
 						<td class="td-task">
 							<input v-if="isEdit" v-model="todo.task" />
@@ -80,10 +119,10 @@
 						</td>
 
 						<td>
-							<select v-model="todo.isDone">
-								<option value="`false`">Waiting</option>
-								<option value="`false`">Doing</option>
-								<option value="`true`">Complete</option>
+							<select v-model="todo.status">
+								<option value="Waiting">Waiting</option>
+								<option value="Doing">Doing</option>
+								<option value="Complete">Complete</option>
 							</select>
 						</td>
 						<td>
@@ -96,6 +135,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<!-- タスクリストのレンダリング -->
 
 			<!-- 各種機能ここから -->
 			<section>
@@ -108,7 +148,7 @@
 
 			<!-- デバッグ用 -->
 			<!-- <pre>{{$data.todos}}</pre> -->
-			<pre>{{$data.checkedStatus}}</pre>
+			<!-- <pre>{{$data.checkedStatus}}</pre> -->
 			<!-- デバッグ用 -->
 		</div>
 		<!-- Vueアプリここまで -->

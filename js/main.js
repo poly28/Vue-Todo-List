@@ -1,5 +1,5 @@
 //=======================
-// メイン処理
+// Todo
 //=======================
 // todo(必須機能)
 // ■ ステータス(未着手、進行中、完了 など)
@@ -8,8 +8,8 @@
 // ■ TODOのタイトル・期限・ステータス変更
 
 // todo(カスタマイズ)
-// □ ソート(ID、期限、ステータスで並べ替え)
-// □ フィルター(ID、期限、ステータスで絞り込み)
+//! □ ソート(ID、期限、ステータスで並べ替え)
+// ■ フィルター(ID、期限、ステータスで絞り込み)
 // ■ コメント機能？→タスクの詳細を記載可能にした
 // □ TODOリストを1箇所(どのパーツでもOK)コンポーネント化してみる
 
@@ -21,6 +21,10 @@
 // □入力フォームのバリデーション
 // 　期限として過去の日付を設定できないようにする
 
+//=======================
+// メイン処理
+//=======================
+// 時間設定用のコンポーネント
 const VueCtkDateTimePicker = window['vue-ctk-date-time-picker'];
 Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
 
@@ -31,11 +35,15 @@ new Vue({
 		todos: [],
 
 		//ステータスによる絞り込み用配列
-		checkedStatus: [],
+		checkedStatus: {
+			Waiting: false,
+			Doing: false,
+			Complete: false,
+		},
 
 		// タスク追加用データ
 		newTask: '',
-		newComment: '-',
+		newDetail: '-',
 		newLimit: '',
 		isEdit: false,
 
@@ -53,7 +61,8 @@ new Vue({
 		},
 	},
 	methods: {
-		addTask: function () {
+		// タスク追加処理
+		addTask() {
 			// 入力フォームのバリデーション
 			// タスク名の未入力検知
 			if (this.newTask === '') {
@@ -65,28 +74,95 @@ new Vue({
 			let newTask = {
 				id: this.todos.length + 1,
 				task: this.newTask,
-				comment: this.newComment,
+				comment: this.newDetail,
 				limit: this.newLimit,
 				status: 'Waiting',
-				isDone: false,
 			};
+			// タスクの追加処理
 			this.todos.push(newTask);
+
+			// タスク追加用変数の初期化
 			this.newTask = '';
-			this.newComment = '-';
+			this.newDetail = '-';
 			this.newLimit = '';
 		},
-		rmTask: function (index) {
+
+		// タスク個別削除機能：タスク横の×を押して該当タスクを削除します
+		rmTask(index) {
 			this.todos.splice(index, 1);
 		},
 
-		allDelete: function () {
+		// 全削除機能：All Deleteボタンを押してタスクを全削除します
+		allDelete() {
 			if (confirm('All delete OK?')) {
 				this.todos = [];
 			}
 		},
 	},
+	computed: {
+		//----------------------------------
+		// タスクリストレンダリング用フィルター
+		//----------------------------------
+		filteredList() {
+			// フィルタリング実施後のリスト
+			let newList = [];
+
+			//------------------------------
+			// Filter全解除
+			if (
+				!this.checkedStatus.Waiting &&
+				!this.checkedStatus.Doing &&
+				!this.checkedStatus.Complete
+			) {
+				// フィルタリング無しでタスクリストをリターン
+				return this.todos;
+			}
+			//------------------------------
+			// Filter全選択
+			if (
+				this.checkedStatus.Waiting &&
+				this.checkedStatus.Doing &&
+				this.checkedStatus.Complete
+			) {
+				// フィルタリング無しでタスクリストをリターン
+				return this.todos;
+			}
+			//------------------------------
+
+			// タスクリストフィルタリング処理
+			for (i = 0; i < this.todos.length; i++) {
+				let isShow = true;
+
+				// ステータス：Waiting
+				if (this.checkedStatus.Waiting) {
+					// ステータスがWaitingのタスクをnewListに登録
+					if (this.todos[i].status === 'Waiting') {
+						newList.push(this.todos[i]);
+					}
+				}
+				// ステータス：Doing
+				if (this.checkedStatus.Doing) {
+					// ステータスがDoingのタスクをnewListに登録
+					if (this.todos[i].status === 'Doing') {
+						newList.push(this.todos[i]);
+					}
+				}
+				// ステータス：Complete
+				if (this.checkedStatus.Complete) {
+					// ステータスがCompleteのタスクをnewListに登録
+					if (this.todos[i].status === 'Complete') {
+						newList.push(this.todos[i]);
+					}
+				}
+			}
+
+			// フィルタリングしたリストを返却する
+			return newList;
+		},
+	},
 	watch: {
-		todos: function () {
+		// タスク削除時のIDの整合性を保つ
+		todos() {
 			for (let i = 0; i < this.todos.length; i++) {
 				this.todos[i].id = i + 1;
 			}
