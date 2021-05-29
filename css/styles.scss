@@ -12,14 +12,14 @@ body {
 ================================*/
 $mainColor: rgb(102, 204, 255);
 $headerBGC: $mainColor;
-$tabeleHeadBGC: $mainColor;
+$tableHeadBGC: $mainColor;
 $tableDataBGC: white;
 
 /*================================
     ▽ ボーダー
 ================================*/
 $taskBorder: 1px solid gray;
-$tabeleBorder: 3px solid rgb(245, 245, 245);
+$tableBorder: 3px solid rgb(245, 245, 245);
 
 /*================================
     ▽ 横幅
@@ -78,10 +78,10 @@ table {
 	margin-left: 30px;
 	thead {
 		tr {
-			background-color: $tabeleHeadBGC;
+			background-color: $tableHeadBGC;
 			color: white;
 			th {
-				border: $tabeleBorder;
+				border: $tableBorder;
 			}
 			.th-id,
 			.td-id {
@@ -116,7 +116,7 @@ table {
 		tr {
 			td {
 				background-color: $tableDataBGC;
-				border: $tabeleBorder;
+				border: $tableBorder;
 			}
 		}
 		.complete {

@@ -31,7 +31,7 @@ Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
 new Vue({
 	el: '#app',
 	data: {
-		// タスクリストの格納配列
+		// タスクリストを格納するための配列
 		todos: [],
 
 		//ステータスによる絞り込み用配列
@@ -40,6 +40,8 @@ new Vue({
 			Doing: false,
 			Complete: false,
 		},
+
+		sortOrder: 0,
 
 		// タスク追加用データ
 		newTask: '',
